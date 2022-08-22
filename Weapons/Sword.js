@@ -5,7 +5,8 @@ export default class Sword extends Weapon {
     super();
     this.name = "Sword";
     this.whoCanUse = ["Warrior", "Priest", "Mage", "Rouge", "Archer"];
-    this.damage = [8, 12];
+    this.minDamage = 8;
+    this.maxDamage = 12;
     this.chanceOfSuccess = 90;
   }
 }

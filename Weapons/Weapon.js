@@ -1,13 +1,15 @@
 export default class Weapon {
   name;
   whoCanUse;
-  damage;
+  minDamage;
+  maxDamage;
   chanceOfSuccess;
 
   constructor() {
     this.name = "null";
     this.whoCanUse = [];
-    this.damage = [];
+    this.minDamage = "null";
+    this.maxDamage = "null";
     this.chanceOfSuccess = "null";
   }
 }

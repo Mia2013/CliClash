@@ -5,7 +5,8 @@ export default class WarHammer extends Weapon {
     super();
     this.name = "War Hammer";
     this.whoCanUse = ["Priest"];
-    this.damage = [10, 15];
+    this.minDamage = 10;
+    this.maxDamage = 15;
     this.chanceOfSuccess = 93;
   }
 }

@@ -5,7 +5,8 @@ export default class Wand extends Weapon {
     super();
     this.name = "Wand";
     this.whoCanUse = ["Mage"];
-    this.damage = [9, 15];
+    this.minDamage = 9;
+    this.maxDamage = 15;
     this.chanceOfSuccess = 97;
   }
 }

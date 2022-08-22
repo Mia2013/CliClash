@@ -5,7 +5,8 @@ export default class Bow extends Weapon {
     super();
     this.name = "Bow";
     this.whoCanUse = ["Archer"];
-    this.damage = [7, 12];
+    this.minDamage = 7;
+    this.maxDamage = 12;
     this.chanceOfSuccess = 89;
   }
 }
