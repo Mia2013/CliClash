@@ -7,6 +7,6 @@ export default class Dagger extends Weapon {
     this.whoCanUse = ["Rouge"];
     this.minDamage = 4;
     this.maxDamage = 5;
-    this.chanceOfSuccess = 98;
+    this.hitChance = 98;
   }
 }

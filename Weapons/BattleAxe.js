@@ -7,6 +7,6 @@ export default class BattleAxe extends Weapon {
     this.whoCanUse = ["Warrior"];
     this.minDamage = 12;
     this.maxDamage = 15;
-    this.chanceOfSuccess = 92;
+    this.hitChance = 92;
   }
 }

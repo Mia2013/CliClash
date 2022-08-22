@@ -7,6 +7,6 @@ export default class Bow extends Weapon {
     this.whoCanUse = ["Archer"];
     this.minDamage = 7;
     this.maxDamage = 12;
-    this.chanceOfSuccess = 89;
+    this.hitChance = 89;
   }
 }

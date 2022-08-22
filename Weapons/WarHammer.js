@@ -7,6 +7,6 @@ export default class WarHammer extends Weapon {
     this.whoCanUse = ["Priest"];
     this.minDamage = 10;
     this.maxDamage = 15;
-    this.chanceOfSuccess = 93;
+    this.hitChance = 93;
   }
 }
