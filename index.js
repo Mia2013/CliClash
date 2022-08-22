@@ -14,11 +14,12 @@ import BattleAxe from "./Weapons/BattleAxe.js";
 import Bow from "./Weapons/Bow.js";
 import Wand from "./Weapons/Wand.js";
 
-const bela = new Warrior("Béla");
-console.log(bela.equipWeapon(new WarHammer()));
-console.log("Béla weapon: " + bela.getWeapon());
-const pista = new Mage("Pista");
-console.log(pista.equipWeapon(new Sword()));
-const pistaa = new Rogue("Pista");
-console.log(pistaa.equipWeapon(new Sword()));
-console.log("evasion " + pistaa.getEvasion());
+import Arena from './Arena/Arena.js';
+
+
+const bela = new Mage("Béla");
+bela.equipWeapon(new Sword());
+const pista = new Rogue("Pista");
+pista.equipWeapon(new Sword());
+const arena = new Arena();
+arena.tournament(bela, pista);

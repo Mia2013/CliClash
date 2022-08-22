@@ -33,7 +33,7 @@ export default class Hero {
   getEvasion() {
     return this.evasion;
   }
-  
+
   getWeapon() {
     return this.weapon;
   }
@@ -53,6 +53,13 @@ export default class Hero {
   chanceOfUseAbility() {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber <= 10) {
+      return true;
+    }
+    return false;
+  }
+  chanceOfEvasion() {
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    if (randomNumber <= this.evasion) {
       return true;
     }
     return false;
@@ -77,7 +84,7 @@ export default class Hero {
       }
     }
     if (this.weapon) {
-      return weapon.damageCalc() + plusDamage;
+      return this.weapon.damageCalc() + plusDamage;
     }
 
     return 0;
