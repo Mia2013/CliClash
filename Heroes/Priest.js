@@ -11,6 +11,10 @@ export default class Priest extends Hero {
   }
 
 
+  useAbility() {
+    this.hp += 10;
+    return {hp: this.hp};
+  }
 
 
 }

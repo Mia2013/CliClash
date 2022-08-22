@@ -10,6 +10,9 @@ export default class Archer extends Hero {
     this.evasion = 15;
   }
 
+  useAbility() {
+    return {damage: 15};
+  }
 
 
 }

@@ -10,5 +10,7 @@ export default class Mage extends Hero {
     this.evasion = 5;
   }
 
-
+  useAbility() {
+    return {damage: 20};
+  }
 }

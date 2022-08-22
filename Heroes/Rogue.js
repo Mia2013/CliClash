@@ -9,6 +9,14 @@ export default class Rogue extends Hero {
     this.armour = 3;
     this.evasion = 30;
   }
+  
+  useAbility() {
+    this.evasion += 100;
+    return {evasion: this.evasion};
+  }
 
+  setDefaultValueAfterUseAbility() {
+    return (this.evasion = 30);
+  }
 
 }

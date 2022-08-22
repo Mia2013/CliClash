@@ -10,5 +10,12 @@ export default class Warrior extends Hero {
     this.evasion = 20;
   }
 
+  useAbility() {
+    this.armour += 10
+    return {armour: this.armour};
+  }
 
+  setDefaultValueAfterUseAbility() {
+       return (this.armour = 5);
+  }
 }
