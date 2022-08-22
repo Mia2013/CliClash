@@ -10,6 +10,4 @@ export default class Weapon {
     this.damage = [];
     this.chanceOfSuccess = "null";
   }
-
-  
 }
