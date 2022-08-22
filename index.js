@@ -17,7 +17,7 @@ import Wand from "./Weapons/Wand.js";
 import Arena from './Arena/Arena.js';
 
 
-const bela = new Mage("Béla");
+const bela = new Warrior("Béla");
 bela.equipWeapon(new Sword());
 const pista = new Rogue("Pista");
 pista.equipWeapon(new Sword());

@@ -57,6 +57,7 @@ export default class Hero {
     }
     return false;
   }
+
   chanceOfEvasion() {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     if (randomNumber <= this.evasion) {
@@ -75,7 +76,7 @@ export default class Hero {
     return (this.weapon = false);
   }
 
-  fightWithAnotherHero() {
+  useWeapon() {
     let plusDamage = 0;
     if (this.chanceOfUseAbility()) {
       this.useAbility();
