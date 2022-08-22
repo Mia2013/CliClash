@@ -8,9 +8,10 @@ export default class Mage extends Hero {
     this.ability = "Firestorm";
     this.armour = 1;
     this.evasion = 5;
+    this.weapon = false;
   }
 
   useAbility() {
-    return {damage: 20};
+    return { damage: 20 };
   }
 }

@@ -8,13 +8,11 @@ export default class Priest extends Hero {
     this.ability = "Heal";
     this.armour = 4;
     this.evasion = 20;
+    this.weapon = false;
   }
-
 
   useAbility() {
     this.hp += 10;
-    return {hp: this.hp};
+    return { hp: this.hp };
   }
-
-
 }

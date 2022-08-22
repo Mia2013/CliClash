@@ -4,6 +4,7 @@ export default class Hero {
   ability;
   armour;
   evasion;
+  weapon;
 
   constructor(name) {
     this.name = name;
@@ -12,20 +13,29 @@ export default class Hero {
   getType() {
     return this.type;
   }
+
   getName() {
     return this.name;
   }
+
   getHp() {
     return this.hp;
   }
+
   getAbility() {
     return this.ability;
   }
+
   getArmour() {
     return this.armour;
   }
+
   getEvasion() {
     return this.evasion;
+  }
+  
+  getWeapon() {
+    return this.weapon;
   }
 
   decreaseHp(number) {
@@ -49,6 +59,16 @@ export default class Hero {
   }
 
   equipWeapon(weapon) {
+    const canThisHeroUseTheWeapon = weapon.whoCanUse.filter(
+      (heroType) => heroType === this.type
+    );
+    if (canThisHeroUseTheWeapon.length) {
+      return (this.weapon = weapon);
+    }
+    return (this.weapon = false);
+  }
+
+  fightWithAnotherHero() {
     let plusDamage = 0;
     if (this.chanceOfUseAbility()) {
       this.useAbility();
@@ -56,13 +76,10 @@ export default class Hero {
         plusDamage = this.useAbility().damage;
       }
     }
-
-    const canThisHeroUseTheWeapon = weapon.whoCanUse.filter(
-      (heroType) => heroType === this.type
-    );
-    if (canThisHeroUseTheWeapon.length === 1) {
+    if (this.weapon) {
       return weapon.damageCalc() + plusDamage;
     }
+
     return 0;
   }
 }

@@ -8,11 +8,10 @@ export default class Archer extends Hero {
     this.ability = "Headshot";
     this.armour = 2;
     this.evasion = 15;
+    this.weapon = false;
   }
 
   useAbility() {
-    return {damage: 15};
+    return { damage: 15 };
   }
-
-
 }
