@@ -90,4 +90,39 @@ export default class Hero {
 
     return 0;
   }
+
+  getFinalDamage(defensiveHero, initialDamage) {
+    if (initialDamage > 0) {
+      const finalDamage =
+        initialDamage - Math.floor(defensiveHero.getArmour() / 3);
+      return finalDamage;
+    }
+    return 0;
+  }
+
+  fightAnotherHero(defensiveHero) {
+    const startHp = defensiveHero.getHp();
+    const totalDamage = this.useWeapon();
+    let decreaseDefensiveHeroHp = this.getFinalDamage(
+      defensiveHero,
+      totalDamage
+    );
+    if (totalDamage > 0) {
+      defensiveHero.chanceOfEvasion()
+        ? (decreaseDefensiveHeroHp = 0)
+        : decreaseDefensiveHeroHp;
+    }
+
+    defensiveHero.decreaseHp(decreaseDefensiveHeroHp);
+    this.setDefaultValueAfterUseAbility();
+
+    const dataForDisplay = {
+      name: defensiveHero.getName(),
+      startHp,
+      totalDamage,
+      decreaseDefensiveHeroHp,
+    };
+
+    return dataForDisplay;
+  }
 }

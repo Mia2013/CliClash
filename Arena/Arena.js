@@ -7,19 +7,8 @@ export default class Arena {
       } else {
         this.fight(hero2, hero1, counter);
       }
-      hero1.setDefaultValueAfterUseAbility();
-      hero2.setDefaultValueAfterUseAbility();
       counter++;
     }
-  }
-
-  getFinalDamage(anotherHero, initialDamage) {
-    if (initialDamage > 0) {
-      const finalDamage =
-        initialDamage - Math.floor(anotherHero.getArmour() / 3);
-      return finalDamage;
-    }
-    return 0;
   }
 
   whoStartTheFight() {
@@ -27,63 +16,71 @@ export default class Arena {
   }
 
   fight(hero1, hero2, counter) {
-    console.table([
-      [counter, "round", "start"],
-      [hero1.getName(), "hp", hero1.getHp()],
-      [hero2.getName(), "hp", hero2.getHp()],
-      ["first hit", hero1.getName()],
-    ]);
-
-    const hero1TotalDamage = hero2.useWeapon();
-    const hero2TotalDamage = hero1.useWeapon();
-
-    let decreaseHero1Hp = this.getFinalDamage(hero1, hero1TotalDamage);
-    let decreaseHero2Hp = this.getFinalDamage(hero2, hero2TotalDamage);
-
-    if (hero1TotalDamage > 0) {
-      hero1.chanceOfEvasion() ? (decreaseHero1Hp = 0) : decreaseHero1Hp;
-    }
-    if (hero2TotalDamage > 0) {
-      hero2.chanceOfEvasion() ? (decreaseHero2Hp = 0) : decreaseHero2Hp;
-    }
-
-    hero2.decreaseHp(decreaseHero2Hp);
-
+    const hero1Attacking = hero1.fightAnotherHero(hero2);
+    let hero2Attacking;
     let winner;
 
     if (hero2.getHp() <= 0) {
       winner = hero1.getName();
+
+      hero2Attacking = {
+        name: hero1.getName(),
+        startHp: hero1.getHp(),
+        totalDamage: 0,
+        decreaseDefensiveHeroHp: 0,
+      };
     } else {
-      hero1.decreaseHp(decreaseHero1Hp);
+      hero2Attacking = hero2.fightAnotherHero(hero1);
     }
 
     if (hero1.getHp() <= 0) {
       winner = hero2.getName();
     }
 
-    console.table([
-      [counter, "round", "end"],
+    console.table(
+      this.displayTable(
+        counter,
+        hero1,
+        hero2,
+        hero1Attacking,
+        hero2Attacking,
+        winner
+      )
+    );
+  }
+
+  displayTable(counter, hero1, hero2, hero1Attacking, hero2Attacking, winner) {
+    const displayArray = [
+      [`${counter}. round`],
+
+      [
+        "name",
+        "start hp",
+        "first hit",
+        "total damage",
+        "lost hp",
+        "current hp",
+        "winner",
+      ],
       [
         hero1.getName(),
-        "hp",
+        hero2Attacking.startHp,
+        hero1.getName(),
+        hero2Attacking.totalDamage,
+        -hero2Attacking.decreaseDefensiveHeroHp,
         hero1.getHp(),
-        "total damage",
-        hero1TotalDamage,
-        "lost hp",
-        -decreaseHero1Hp,
+        winner === hero1.getName() ? winner : "",
       ],
       [
         hero2.getName(),
-        "hp",
+        hero1Attacking.startHp,
+        "",
+        hero1Attacking.totalDamage,
+        -hero1Attacking.decreaseDefensiveHeroHp,
         hero2.getHp(),
-        "total damage",
-        hero2TotalDamage,
-        "lost hp",
-        -decreaseHero2Hp,
+        winner === hero2.getName() ? winner : "",
       ],
-    ]);
-    if (winner) {
-      console.table(["winner", winner]);
-    }
+    ];
+    return displayArray;
   }
 }

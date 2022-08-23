@@ -14,12 +14,11 @@ import BattleAxe from "./Weapons/BattleAxe.js";
 import Bow from "./Weapons/Bow.js";
 import Wand from "./Weapons/Wand.js";
 
-import Arena from './Arena/Arena.js';
+import Arena from "./Arena/Arena.js";
 
-
-const bela = new Warrior("Béla");
-bela.equipWeapon(new Sword());
-const pista = new Rogue("Pista");
+const bela = new Priest("Béla");
+bela.equipWeapon(new WarHammer());
+const pista = new Warrior("Pista");
 pista.equipWeapon(new Sword());
 const arena = new Arena();
 arena.tournament(bela, pista);
