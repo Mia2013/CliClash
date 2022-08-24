@@ -1,14 +1,17 @@
 export default class Arena {
   tournament(hero1, hero2) {
     let counter = 1;
+    let fightRounds = [];
     while (hero1.getHp() > 0 && hero2.getHp() > 0) {
       if (this.whoStartTheFight()) {
-        this.fight(hero1, hero2, counter);
+        fightRounds.push(this.fight(hero1, hero2, counter));
       } else {
-        this.fight(hero2, hero1, counter);
+        fightRounds.push(this.fight(hero2, hero1, counter));
       }
       counter++;
     }
+
+    return fightRounds;
   }
 
   whoStartTheFight() {
@@ -16,6 +19,7 @@ export default class Arena {
   }
 
   fight(hero1, hero2, counter) {
+    const firstHit = hero1.getName();
     const hero1Attacking = hero1.fightAnotherHero(hero2);
     let hero2Attacking;
     let winner;
@@ -40,6 +44,7 @@ export default class Arena {
     console.table(
       this.displayTable(
         counter,
+        firstHit,
         hero1,
         hero2,
         hero1Attacking,
@@ -47,9 +52,27 @@ export default class Arena {
         winner
       )
     );
+
+    return {
+      counter,
+      firstHit,
+      hero1,
+      hero2,
+      hero1Attacking,
+      hero2Attacking,
+      winner,
+    };
   }
 
-  displayTable(counter, hero1, hero2, hero1Attacking, hero2Attacking, winner) {
+  displayTable(
+    counter,
+    firstHit,
+    hero1,
+    hero2,
+    hero1Attacking,
+    hero2Attacking,
+    winner
+  ) {
     const displayArray = [
       [`${counter}. round`],
 
@@ -65,7 +88,7 @@ export default class Arena {
       [
         hero1.getName(),
         hero2Attacking.startHp,
-        hero1.getName(),
+        firstHit,
         hero2Attacking.totalDamage,
         -hero2Attacking.decreaseDefensiveHeroHp,
         hero1.getHp(),
